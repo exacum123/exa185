@@ -9,35 +9,38 @@ $jsondata = json_decode(file_get_contents("../data.json"), true);
 </title>
 
 <body style="background-color: rgb(249, 255, 255);">
-<section class="container">
-  <?php
+  <section class="container">
+    <?php
   echo "<br>" . "<h2>" . $jsondata['restaurant'][0]["name"] . "</h2>" . "<br>";
   echo "<h6>" . "Intro: " . $jsondata['restaurant'][0]["intro"] . "</h6>" . "<br>" . "<br>" . "<br>";
   ?>
-</section>
+  </section>
 
-<div class="container justify-content-start">
-  <div class="row">
-    <div class="col-3">
-      <img src="../img/Logo/OasisLogo.jfif" width="300px" height="300px">
-      <div class="card mt-3 mb-5" style="width: 19rem;">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" id="barColor"><?php echo "Tel: " . $jsondata['restaurant'][0]["tel"]; ?></li>
-          <li class="list-group-item" id="barColor"><?php echo "Address: " . $jsondata['restaurant'][0]["adrs"]; ?></li>
-        </ul>
+  <div class="container justify-content-start">
+    <div class="row">
+      <div class="col-3">
+        <img src="../img/Logo/OasisLogo.jfif" width="300px" height="300px">
+        <div class="card mt-3 mb-5" style="width: 19rem;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" id="barColor"><?php echo "Tel: " . $jsondata['restaurant'][0]["tel"]; ?></li>
+            <li class="list-group-item" id="barColor"><?php echo "Address: " . $jsondata['restaurant'][0]["adrs"]; ?>
+            </li>
+          </ul>
+        </div>
+        <?php echo "Opening Hours: " . "<br>" . "<br>"; ?>
+        <div class="card mt-1 d-flex justify-content-start" style="width: 19rem;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" id="barColor">
+              <?php echo "<h4>" . "Mon-Fri:" . $jsondata['restaurant'][0]['time'][0]['MonFri'] . "</h4>"; ?></li>
+            <li class="list-group-item" id="barColor">
+              <?php echo "<h4>" . "Sat-Sun:" . $jsondata['restaurant'][0]['time'][0]['SatSun'] . "</h4>"; ?></li>
+          </ul>
+        </div>
       </div>
-      <?php echo "Opening Hours: " . "<br>" . "<br>"; ?>
-      <div class="card mt-1 d-flex justify-content-start" style="width: 19rem;">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" id="barColor"><?php echo "<h4>" . "Mon-Fri:" . $jsondata['restaurant'][0]['time'][0]['MonFri'] . "</h4>"; ?></li>
-          <li class="list-group-item" id="barColor"><?php echo "<h4>" . "Sat-Sun:" . $jsondata['restaurant'][0]['time'][0]['SatSun'] . "</h4>"; ?></li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-7 offset-2">
-      <?php
+      <div class="col-7 offset-2">
+        <?php
       echo "<h4>" . "The MOST Popular dishes:" . "</h4>" . "<br>" . "<br>" . "<br>";
-
+      echo "<h4>" . "The MOST Popular dishes:" . "</h4>" . "<br>" . "<br>" . "<br>";
       echo '<img src="../img/dish1.jfif">' . "<br>";
       echo "No.1" . "<p>" . $jsondata['restaurant'][0]["food"][0]['id0'] . "</p>" . "<br>" . "<br>" . "<br>";
       echo '<img src="../img/dish2.jfif">' . "<br>";
@@ -50,10 +53,24 @@ $jsondata = json_decode(file_get_contents("../data.json"), true);
       echo "No.5" . "<p>" . $jsondata['restaurant'][0]["food"][0]['id4'] . "</p>" . "<br>" . "<br>" . "<br>";
       echo '<img src="../img/dish6.jfif">' . "<br>";
       echo "No.6" . "<p>" . $jsondata['restaurant'][0]["food"][0]['id5'] . "</p>" . "<br>" . "<br>" . "<br>";
+
+      $i = 0;
+      
+      foreach($jsondata['restaurant'][0]["foodImg"] as $fImg){
+      echo '<img src="' .$fImg. '">';
+      foreach($jsondata['restaurant'][0]["food"][0] as $value1){
+        if($i < 6){
+          $i++;
+        }  else{
+        break;} 
+      echo "No.$i" . "<p>" . $value1 . "</p>" . "<br>" . "<br>" . "<br>";
+            }
+          }
+    
       ?>
+      </div>
     </div>
   </div>
-</div>
 </body>
 
 <?php
