@@ -11,3 +11,7 @@ background: rgb(215, 255, 255);
 height: 300px;
 width: 300px; 
 }
+
+#barColor {
+    background: rgb(249, 255, 255);
+}
