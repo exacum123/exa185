@@ -7,7 +7,7 @@ $jsondata = json_decode(file_get_contents("../data.json"), true);
   <?php echo $jsondata['restaurant'][2]["name"] ?>
 </title>
 
-
+<body style="background-color: rgb(249, 255, 255);">
 <section class="container">
   <?php
   echo "<br>" . "<h2>" . $jsondata['restaurant'][2]["name"] . "</h2>" . "<br>";
@@ -18,15 +18,22 @@ $jsondata = json_decode(file_get_contents("../data.json"), true);
 <div class="container justify-content-start">
   <div class="row">
     <div class="col-3">
-    <img src="../img/Logo/Running 燒Logo.jfif" width="300px" height="300px">
-      <?php
-      echo "Tel: " . $jsondata['restaurant'][2]["tel"] . "<br>";
-      echo "Address: " . $jsondata['restaurant'][2]["adrs"] . "<br>" . "<br>" . "<br>" . "<br>";
-      echo "Opening Hours: " . "<br>" . "<br>";
-      echo "<h5>" . "Mon-Fri:" . $jsondata['restaurant'][2]['time'][0]['MonFri'] . "</h5>";
-      echo "<h5>" . "Sat-Sun:" . $jsondata['restaurant'][2]['time'][0]['SatSun'] . "</h5>" . "<br>" . "<br>";
-      ?>
+      <img src="../img/Logo/OasisLogo.jfif" width="300px" height="300px">
+      <div class="card mt-3 mb-5" style="width: 19rem;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" id="barColor"><?php echo "Tel: " . $jsondata['restaurant'][2]["tel"]; ?></li>
+          <li class="list-group-item" id="barColor"><?php echo "Address: " . $jsondata['restaurant'][2]["adrs"]; ?></li>
+        </ul>
+      </div>
+      <?php echo "Opening Hours: " . "<br>" . "<br>"; ?>
+      <div class="card mt-1 d-flex justify-content-start" style="width: 19rem;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" id="barColor"><?php echo "<h4>" . "Mon-Fri:" . $jsondata['restaurant'][2]['time'][0]['MonFri'] . "</h4>"; ?></li>
+          <li class="list-group-item" id="barColor"><?php echo "<h4>" . "Sat-Sun:" . $jsondata['restaurant'][2]['time'][0]['SatSun'] . "</h4>"; ?></li>
+        </ul>
+      </div>
     </div>
+
     <div class="col-7 offset-2">
       <?php
       echo "<h4>" . "The MOST Popular dishes:" . "</h4>" . "<br>" . "<br>". "<br>";
@@ -47,6 +54,7 @@ $jsondata = json_decode(file_get_contents("../data.json"), true);
     </div>
   </div>
 </div>
+</body>
 
 <?php
 include('../footer.php');
